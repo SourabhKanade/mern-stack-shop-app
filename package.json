@@ -1,7 +1,6 @@
 {
-  "name": "youtube-node-shop-api",
+  "name": "backend-node",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
@@ -18,5 +17,15 @@
     "mongoose": "^6.1.5",
     "nodemon": "^2.0.15",
     "stripe": "^8.195.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SourabhKanade/online-payment-security-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SourabhKanade/online-payment-security-backend/issues"
+  },
+  "homepage": "https://github.com/SourabhKanade/online-payment-security-backend#readme",
+  "description": ""
 }
