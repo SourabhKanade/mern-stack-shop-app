@@ -16,7 +16,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.5",
     "nodemon": "^2.0.15",
-    "stripe": "^8.195.0"
+    "razorpay": "^2.8.0",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {},
   "repository": {
