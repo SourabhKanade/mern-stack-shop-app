@@ -1,36 +1,75 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import cartReducer from "./cartRedux";
-import userReducer from "./userRedux";
+// import { configureStore, combineReducers } from "@reduxjs/toolkit";
+// import cartReducer from "./cartRedux";
+// import userReducer from "./userRedux";
+// import {
+//   persistStore,
+//   persistReducer,
+//   FLUSH,
+//   REHYDRATE,
+//   PAUSE,
+//   PERSIST,
+//   PURGE,
+//   REGISTER,
+// } from "redux-persist";
+// import storage from "redux-persist/lib/storage";
+
+// const persistConfig = {
+//   key: "root",
+//   version: 1,
+//   storage,
+// };
+
+// const rootReducer = combineReducers({ user: userReducer, cart: cartReducer });
+
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// export const store = configureStore({
+//   reducer: persistedReducer,
+//   middleware: (getDefaultMiddleware) =>
+//     getDefaultMiddleware({
+//       serializableCheck: {
+//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//       },
+//     }),
+// });
+
+// export let persistor = persistStore(store);
+
+import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+  REHYDRATE
+} from "redux-persist"
+import persistReducer from "redux-persist/es/persistReducer"
+import persistStore from "redux-persist/es/persistStore"
+import storage from "redux-persist/lib/storage"
+import cartReducer from "./cartRedux"
+import userReducer from "./userRedux"
 
 const persistConfig = {
   key: "root",
   version: 1,
-  storage,
-};
+  storage
+}
+const rootReducer = combineReducers({
+  user: userReducer,
+  cart: cartReducer
+  /* : Reducer, */
+})
 
-const rootReducer = combineReducers({ user: userReducer, cart: cartReducer });
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
-});
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+      }
+    })
+})
 
-export let persistor = persistStore(store);
+export const persistor = persistStore(store)

@@ -215,7 +215,7 @@ const __DEV__ = document.domain === 'localhost'
      .then((res) => {
       return res.json()
      })
-     console.log(res)
+     console.log(data)
     console.log(cart.total);
     
     // Key_id = rzp_test_vxmw1WaPp9zxSb;
@@ -297,7 +297,8 @@ const __DEV__ = document.domain === 'localhost'
         </Top>
         <Bottom>
           <Info>
-            {cart.products.map((product) => (
+        
+          {cart.products.map((product) => (
               <Product>
                 <ProductDetail>
                   <Image src={product.img} />

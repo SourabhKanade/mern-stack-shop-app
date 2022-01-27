@@ -54,7 +54,7 @@ const Logo = styled.h1`
   ${mobile({ fontSize: "24px" })}
 `;
 const Right = styled.div`
-  flex: 1;
+  flex: 2;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -69,9 +69,36 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
+const Button = styled.button`
+    border-radius: 40px;
+    padding: 10px;
+    font-size: 13px;
+    width: 89px;
+    border: black;
+    height: 37px;
+    background-color: #f7e8e2;
+    cursor: pointer;
+`;
+
 const Navbar = () => {
   const quantity = useSelector(state=>state.cart.quantity)
+//  const  InitialState = {
+//   user : JSON.parse(localStorage.getItem("user")) || null,
+//   isFetching: false,
+//   error: false
+//  };
+
+//   const User = InitialState;
+
+const handleLogout = (e) => {
+  // localStorage.removeItem("persist:root");
+  localStorage.clear();
+  e.preventDefault();
+  console.log("Logout triggered");
+};
+  
   return (
+    <>
     <Container>
       <Wrapper>
         <Left>
@@ -82,15 +109,18 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
+        <Link to="/">
           <Logo>Ninja</Logo>
+          </Link>
         </Center>
         <Right>
-        <Link to="/register">
-          <MenuItem> REGISTER </MenuItem>
+          {localStorage.getItem("persist:root" || null) ? <Link to="/"><Button onClick={handleLogout}>LOGOUT</Button> </Link>:
+          <> <Link to="/register">
+          <Button> REGISTER </Button>
           </Link>
           <Link to="/login">
-          <MenuItem>SIGN IN</MenuItem>
-          </Link>
+          <Button>SIGN IN</Button>
+           </Link> </>}
           <Link to="/cart">
           <MenuItem>
             <Badge badgeContent={quantity} color="primary">
@@ -101,6 +131,7 @@ const Navbar = () => {
         </Right>
       </Wrapper>
     </Container>
+    </>
   );
 };
 
