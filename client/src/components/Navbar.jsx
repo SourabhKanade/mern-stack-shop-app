@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Logout } from "../redux/userRedux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div`
   height: 60px;
@@ -70,67 +72,72 @@ const MenuItem = styled.div`
 `;
 
 const Button = styled.button`
-    border-radius: 40px;
-    padding: 10px;
-    font-size: 13px;
-    width: 89px;
-    border: black;
-    height: 37px;
-    background-color: #f7e8e2;
-    cursor: pointer;
+  border-radius: 40px;
+  padding: 10px;
+  font-size: 13px;
+  width: 89px;
+  border: black;
+  height: 37px;
+  background-color: #f7e8e2;
+  cursor: pointer;
 `;
 
 const Navbar = () => {
-  const quantity = useSelector(state=>state.cart.quantity)
-//  const  InitialState = {
-//   user : JSON.parse(localStorage.getItem("user")) || null,
-//   isFetching: false,
-//   error: false
-//  };
+  const quantity = useSelector((state) => state.cart.quantity);
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const dispatch = useDispatch();
 
-//   const User = InitialState;
+  const handleLogout = (e) => {
+    // localStorage.removeItem("persist:root");
+    localStorage.clear();
+    e.preventDefault();
+    dispatch(Logout());
+    console.log("Logout triggered");
+  };
 
-const handleLogout = (e) => {
-  // localStorage.removeItem("persist:root");
-  localStorage.clear();
-  e.preventDefault();
-  console.log("Logout triggered");
-};
-  
   return (
     <>
-    <Container>
-      <Wrapper>
-        <Left>
-          <Language>EN</Language>
-          <SearchContainer>
-            <Input placeholder="Search" />
-            <Search style={{ color: "gray", fontSize: 16 }} />
-          </SearchContainer>
-        </Left>
-        <Center>
-        <Link to="/">
-          <Logo>Ninja</Logo>
-          </Link>
-        </Center>
-        <Right>
-          {localStorage.getItem("persist:root" || null) ? <Link to="/"><Button onClick={handleLogout}>LOGOUT</Button> </Link>:
-          <> <Link to="/register">
-          <Button> REGISTER </Button>
-          </Link>
-          <Link to="/login">
-          <Button>SIGN IN</Button>
-           </Link> </>}
-          <Link to="/cart">
-          <MenuItem>
-            <Badge badgeContent={quantity} color="primary">
-              <ShoppingCartOutlined />
-            </Badge>
-          </MenuItem>
-          </Link>
-        </Right>
-      </Wrapper>
-    </Container>
+      <Container>
+        <Wrapper>
+          <Left>
+            <Language>EN</Language>
+            <SearchContainer>
+              <Input placeholder="Search" />
+              <Search style={{ color: "gray", fontSize: 16 }} />
+            </SearchContainer>
+          </Left>
+          <Center>
+            <Link to="/">
+              <Logo>Ninja</Logo>
+            </Link>
+          </Center>
+          <Right>
+            {/* {localStorage.getItem("persist:root" || null) ? ( */}
+            {currentUser ? (
+              <Link to="/">
+                <Button onClick={handleLogout}>LOGOUT</Button>{" "}
+              </Link>
+            ) : (
+              <>
+                {" "}
+                <Link to="/register">
+                  <Button> REGISTER </Button>
+                </Link>
+                <Link to="/login">
+                  <Button>SIGN IN</Button>
+                </Link>{" "}
+              </>
+            )}
+            <Link to="/cart">
+              <MenuItem>
+                <Badge badgeContent={quantity} color="primary">
+                  <ShoppingCartOutlined />
+                </Badge>
+              </MenuItem>
+            </Link>
+          </Right>
+        </Wrapper>
+      </Container>
     </>
   );
 };

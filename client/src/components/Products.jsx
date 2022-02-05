@@ -3,6 +3,7 @@ import styled from "styled-components";
 // import { popularProducts } from "../data";
 import Product from "./Product";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   padding: 20px;
@@ -14,6 +15,7 @@ const Container = styled.div`
 const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const currentUser = useSelector((state) => state.user.currentUser);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -57,14 +59,25 @@ const Products = ({ cat, filters, sort }) => {
     }
   }, [sort]);
 
-  return (
+  return currentUser ? (
     <Container>
       {cat
-        ? filteredProducts.map((item) => <Product item={item} key={item} />)
+        ? filteredProducts.map((item) => <Product item={item} key={item._id} />)
         : products
             .slice(0, 8)
-            .map((val) => <Product item={val} key={val} />)}
+            .map((val) => <Product item={val} key={val._id} />)}
     </Container>
+  ) : (
+    <div
+      style={{
+        fontSize: "5rem",
+        color: "teal",
+        textAlign: "center",
+        marginBottom: "2rem",
+      }}
+    >
+      Please login to check products
+    </div>
   );
 };
 

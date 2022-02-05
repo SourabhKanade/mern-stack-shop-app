@@ -29,10 +29,10 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-font-size: 30px;
-font-weight: 350;
-justify-content: center;
-display: flex;
+  font-size: 30px;
+  font-weight: 350;
+  justify-content: center;
+  display: flex;
 `;
 
 const Form = styled.form`
@@ -89,6 +89,7 @@ const Login = () => {
     e.preventDefault();
     login(dispatch, { username, password });
   };
+
   return (
     <Container>
       <Wrapper>
@@ -103,14 +104,12 @@ const Login = () => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleClick} >
-            LOGIN
-          </Button>
+          <Button onClick={handleClick}>LOGIN</Button>
           {error && <Error>Something went wrong...</Error>}
           <Agreement>
-        <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-        <Link>CREATE A NEW ACCOUNT</Link>
-        </Agreement>
+            <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
+            <Link>CREATE A NEW ACCOUNT</Link>
+          </Agreement>
         </Form>
       </Wrapper>
     </Container>
