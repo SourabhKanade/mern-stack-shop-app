@@ -35,10 +35,6 @@ const cartSlice = createSlice({
 export const { addProduct, deleteProduct } = cartSlice.actions;
 export default cartSlice.reducer;
 
-/* eslint-disable no-underscore-dangle */
-// @ts-nocheck
-/* eslint-disable no-param-reassign */
-
 // import { createSlice } from "@reduxjs/toolkit"
 
 // const cartSlice = createSlice({

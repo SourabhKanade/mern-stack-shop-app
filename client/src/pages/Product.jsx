@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import './Product.css';
 
 const Container = styled.div``;
 
@@ -108,17 +109,17 @@ const Amount = styled.span`
   margin: 0px 5px;
 `;
 
-const Button = styled.button`
-  padding: 15px;
-  border: 2px solid teal;
-  background-color: white;
-  cursor: pointer;
-  font-weight: 500;
+// const Button = styled.button`
+//   padding: 15px;
+//   border: 2px solid teal;
+//   background-color: white;
+//   cursor: pointer;
+//   font-weight: 500;
 
-  &:hover {
-    background-color: #f8f4f4;
-  }
-`;
+//   &:hover {
+//     background-color: #f8f4f4;
+//   }
+// `;
 
 const Product = () => {
   const location = useLocation();
@@ -186,7 +187,7 @@ const Product = () => {
               <Amount >{quantity}</Amount>
               <Add style={{cursor:"pointer"}} onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button onClick={handleClick}>ADD TO CART</Button>
+            <button  className={'css-button-arrow--blue'} onClick={handleClick}>ADD TO CART</button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

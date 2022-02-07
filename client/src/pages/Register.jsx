@@ -3,7 +3,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import classes from './styles.module.css';
 import "./register.css";
+
 
 const Container = styled.div`
   width: 100vw;
@@ -24,10 +26,10 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-font-size: 25px;
-font-weight: 350;
-justify-content: center;
-display: flex;
+  font-size: 25px;
+  font-weight: 350;
+  justify-content: center;
+  display: flex;
 `;
 
 const Form = styled.form`
@@ -37,32 +39,95 @@ const Form = styled.form`
 
 const Input = styled.input`
   flex: 1;
-  min-width: 40%;
+  min-width: 90%;
   margin: 20px 10px 0px 0px;
-  padding: 10px;
+  padding: 5px;
 `;
 
 const Agreement = styled.span`
   font-size: 13px;
-    margin: 20px 5px;
+  margin: 20px 5px;
 `;
 
-const Button = styled.button`
-  width: 50%;
-  border: none;
-  padding: 15px 20px;
-  background-color: teal;
-  color: white;
-  cursor: pointer;
-  margin: auto;
-  border-radius: 26px;
-`;
+// const invalid = styled.div`
+//   border-color: red;
+//   background: #fbdada;
+// `;
+
+// const control = styled.div`
+//   border-color: red;
+//   background: #fbdada;
+// `;
 
 export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
   const [error, setError] = useState(false);
+  const [passwordIsValid, setPasswordIsValid] = useState();
+  const [formIsValid, setFormIsValid] = useState(false);
+
+  const inputisvalid = email.includes("@") && password.trim().length > 6;
+
+  const enteredNameIsValid = username.trim() !== "";
+  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
+
+  const enteredEmailIsValid = email.includes("@");
+  const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
+
+  const nameInputChangeHandler = (event) => {
+    setUsername(event.target.value);
+    setFormIsValid(inputisvalid);
+  };
+
+  // let formisvalid = false;
+
+  // if (enteredNameIsValid && enteredEmailIsValid) {
+  //   formisvalid = true;
+  // }
+
+  const nameInputBlurHandler = () => {
+    setEnteredNameTouched(true);
+  };
+
+  const emailInputBlurHandler = () => {
+    setEnteredEmailTouched(true);
+  };
+
+  const emailInputChangeHandler = (event) => {
+    setEmail(event.target.value);
+    setFormIsValid(inputisvalid);
+  };
+
+  const passwordChangeHandler = (event) => {
+    setPassword(event.target.value);
+    setFormIsValid(inputisvalid);
+  };
+
+  const validatePasswordHandler = () => {
+    setPasswordIsValid(password.trim().length > 6);
+  };
+
+  // const formSubmissionHandler = (event) => {
+  //   event.preventDefault();
+  //   setEnteredName("");
+  //   setEnteredEmail("");
+  //   if (!enteredNameIsValid) {
+  //     return;
+  //   }
+  //   console.log([enteredName, enteredEmail]);
+  //   setEnteredNameTouched(false);
+  //   setEnteredEmailTouched(false);
+  // };
+
+  const nameInputClasses = nameInputIsInvalid
+    ? "form-control invalid"
+    : "form-control";
+  const emailInputClasses = emailInputIsInvalid
+    ? "form-control invalid"
+    : "form-control";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,41 +146,102 @@ export default function Register() {
   return (
     <div className="register">
       <Container>
-      <Wrapper>
-      <Title className="registerTitle">Register</Title>
-      <Form className="registerForm" onSubmit={handleSubmit}>
-        <label>Username</label>
-        <Input
-          type="text"
-          className="registerInput"
-          placeholder="Enter your username..."
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label>Email</label>
-        <Input
-          type="text"
-          className="registerInput"
-          placeholder="Enter your email..."
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label>Password</label>
-        <Input
-          type="password"
-          className="registerInput"
-          placeholder="Enter your password..."
-          onChange={(e) => setPassword(e.target.value)}
-        />
-         <Agreement>
-            By creating an account, I consent to the processing of my personal
-             data in accordance with the <b>PRIVACY POLICY</b>
-           </Agreement>
-        <Button className="registerButton" type="submit">
-          Register
-        </Button>
-      </Form>
-        <Link className="link" to="/login"></Link>          
-      {error && <span style={{color:"red", marginTop:"10px"}}>Something went wrong!</span>}
-      </Wrapper>
+        <Wrapper>
+          <Title className="registerTitle">Register</Title>
+          <Form className="registerForm" onSubmit={handleSubmit}>
+            {/* <label>Username</label>
+            <Input
+              type="text"
+              className="registerInput"
+              placeholder="Enter your username..."
+              onChange={(e) => setUsername(e.target.value)}
+            /> */}
+            <div className={nameInputClasses}>
+              <label htmlFor="name">Username</label>
+              <Input
+                type="text"
+                id="name"
+                className="registerInput"
+                placeholder="Enter your username..."
+                onChange={nameInputChangeHandler}
+                onBlur={nameInputBlurHandler}
+                value={username}
+              />
+              {nameInputIsInvalid && (
+                <p className="error-text">PLease enter username.</p>
+              )}
+            </div>
+            {/* <label>Email</label>
+            <Input
+              type="text"
+              className="registerInput"
+              placeholder="Enter your email..."
+              onChange={(e) => setEmail(e.target.value)}
+            /> */}
+            <div className={emailInputClasses}>
+              <label htmlFor="email">Email</label>
+              <Input
+                type="email"
+                id="email"
+                className="registerInput"
+                placeholder="Enter your email..."
+                onChange={emailInputChangeHandler}
+                onBlur={emailInputBlurHandler}
+                value={email}
+              />
+              {emailInputIsInvalid && (
+                <p className="error-text">PLease enter email-id.</p>
+              )}
+            </div>
+            {/* <label>Password</label>
+            <Input
+              type="password"
+              className="registerInput"
+              placeholder="Enter your password..."
+              onChange={(e) => setPassword(e.target.value)}
+            /> */}
+
+            <div className={`${classes.control} ${passwordIsValid === false ? classes.invalid : '' }`} >
+              <label htmlFor="password">Password</label>
+              <Input
+                type="password"
+                id="password"
+                className="registerInput"
+                placeholder="Enter your password..."
+                value={password}
+                onChange={passwordChangeHandler}
+                onBlur={validatePasswordHandler}
+              />
+            </div>
+
+            <Agreement>
+              By creating an account, I consent to the processing of my personal
+              data in accordance with the <b>PRIVACY POLICY</b>
+            </Agreement>
+            <button
+              className="register_btn"
+              type="submit"
+              disabled={!formIsValid}
+            >
+              Register
+            </button>
+          </Form>
+          <Link className="link" to="/login"></Link>
+          {error && (
+            <span
+              style={{
+                color: "red",
+                marginTop: "10px",
+                WebkitTextStrokeWidth: "thin",
+                margin: "106px",
+                fontSize: "26px",
+                textAlign: "center",
+              }}
+            >
+              Invalid credentials!
+            </span>
+          )}
+        </Wrapper>
       </Container>
     </div>
   );

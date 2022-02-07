@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { login } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
+import '../components/Navbar_btn.css';
 
 const Container = styled.div`
   width: 100vw;
@@ -47,21 +48,21 @@ const Input = styled.input`
   padding: 10px;
 `;
 
-const Button = styled.button`
-  width: 50%;
-  border: none;
-  padding: 15px 20px;
-  background-color: teal;
-  color: white;
-  cursor: pointer;
-  margin-bottom: 10px;
-  margin: auto;
-  border-radius: 30px;
-  &:disabled {
-    color: white;
-    cursor: not-allowed;
-  }
-`;
+// const Button = styled.button`
+//   width: 50%;
+//   border: none;
+//   padding: 15px 20px;
+//   background-color: teal;
+//   color: white;
+//   cursor: pointer;
+//   margin-bottom: 10px;
+//   margin: auto;
+//   border-radius: 30px;
+  // &:disabled {
+  //   color: white;
+  //   cursor: not-allowed;
+  // }
+// `;
 
 const Agreement = styled.span`
   font-size: 20px;
@@ -104,7 +105,7 @@ const Login = () => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleClick}>LOGIN</Button>
+          <button className="login_btn" onClick={handleClick}>LOGIN</button>
           {error && <Error>Something went wrong...</Error>}
           <Agreement>
             <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>

@@ -6,10 +6,9 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 // import { userRequest } from "../requestMethods";
 // import { useHistory } from "react-router";
-
-// const KEY = process.env.REACT_APP_STRIPE;
 
 const Container = styled.div``;
 
@@ -162,7 +161,6 @@ const Button = styled.button`
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [quantity, setQuantity] = useState(1);
-  // const [stripeToken, setStripeToken] = useState(null);
   // const history = useHistory();
   
   function loadScript(src) {
@@ -288,7 +286,9 @@ const __DEV__ = document.domain === 'localhost'
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
+        <Link to="/">
+          <TopButton>Go Back</TopButton>
+          </Link>
           <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>
@@ -299,7 +299,7 @@ const __DEV__ = document.domain === 'localhost'
           <Info>
         
           {cart.products.map((product) => (
-              <Product>
+              <Product key={product._id}>
                 <ProductDetail>
                   <Image src={product.img} />
                   <Details>
@@ -309,7 +309,9 @@ const __DEV__ = document.domain === 'localhost'
                     <ProductId>
                       <b>ID:</b> {product._id}
                     </ProductId>
-                    <ProductColor color={product.color} />
+                    <ProductColor>
+                    <b>Color:</b> {product.color}
+                    </ProductColor>
                     <ProductSize>
                       <b>Size:</b> {product.size}
                     </ProductSize>
