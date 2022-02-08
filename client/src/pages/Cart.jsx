@@ -213,8 +213,8 @@ const __DEV__ = document.domain === 'localhost'
      .then((res) => {
       return res.json()
      })
-     console.log(data)
-    console.log(cart.total);
+    //  console.log(data)
+    // console.log(cart.total);
     
     // Key_id = rzp_test_vxmw1WaPp9zxSb;
     // Secret_key = Jy5XQBVFo23GLbWLNQ8Wkyyp;

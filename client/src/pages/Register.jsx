@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../responsive";
-import classes from './styles.module.css';
+// import classes from './styles.module.css';
 import "./register.css";
 
 
@@ -18,7 +18,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 40%;
+  width: 20rem;
   padding: 25px;
   background-color: white;
   border-radius: 15px;
@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 25px;
+  font-size: 32px;
   font-weight: 350;
   justify-content: center;
   display: flex;
@@ -69,7 +69,7 @@ export default function Register() {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
-  const inputisvalid = email.includes("@") && password.trim().length > 6;
+  const inputisvalid = username.trim() !== "" && email.includes("@") && password.trim().length > 5;
 
   const enteredNameIsValid = username.trim() !== "";
   const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
@@ -107,27 +107,14 @@ export default function Register() {
   };
 
   const validatePasswordHandler = () => {
-    setPasswordIsValid(password.trim().length > 6);
+    setPasswordIsValid(password.trim().length > 5);
+    // setEnteredEmailTouched(true);
   };
 
-  // const formSubmissionHandler = (event) => {
-  //   event.preventDefault();
-  //   setEnteredName("");
-  //   setEnteredEmail("");
-  //   if (!enteredNameIsValid) {
-  //     return;
-  //   }
-  //   console.log([enteredName, enteredEmail]);
-  //   setEnteredNameTouched(false);
-  //   setEnteredEmailTouched(false);
-  // };
-
-  const nameInputClasses = nameInputIsInvalid
-    ? "form-control invalid"
-    : "form-control";
-  const emailInputClasses = emailInputIsInvalid
-    ? "form-control invalid"
-    : "form-control";
+  const nameInputClasses = nameInputIsInvalid ? "form-control invalid" : "form-control";
+  const emailInputClasses = emailInputIsInvalid ? "form-control invalid" : "form-control";
+  const passwordInputClasses = passwordIsValid === false ? "form-control invalid" : "form-control";
+//  const passwordInputError =  passwordIsValid === false && '';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -168,7 +155,7 @@ export default function Register() {
                 value={username}
               />
               {nameInputIsInvalid && (
-                <p className="error-text">PLease enter username.</p>
+                <p className="error-text">PLease enter valid username.</p>
               )}
             </div>
             {/* <label>Email</label>
@@ -190,18 +177,10 @@ export default function Register() {
                 value={email}
               />
               {emailInputIsInvalid && (
-                <p className="error-text">PLease enter email-id.</p>
+                <p className="error-text">PLease enter valid email-id.</p>
               )}
             </div>
-            {/* <label>Password</label>
-            <Input
-              type="password"
-              className="registerInput"
-              placeholder="Enter your password..."
-              onChange={(e) => setPassword(e.target.value)}
-            /> */}
-
-            <div className={`${classes.control} ${passwordIsValid === false ? classes.invalid : '' }`} >
+            <div className={passwordInputClasses} >
               <label htmlFor="password">Password</label>
               <Input
                 type="password"
@@ -212,8 +191,10 @@ export default function Register() {
                 onChange={passwordChangeHandler}
                 onBlur={validatePasswordHandler}
               />
+                {passwordIsValid === false && (
+                <p className="error-text">PLease enter valid password.</p>
+              )}
             </div>
-
             <Agreement>
               By creating an account, I consent to the processing of my personal
               data in accordance with the <b>PRIVACY POLICY</b>
@@ -233,7 +214,7 @@ export default function Register() {
                 color: "red",
                 marginTop: "10px",
                 WebkitTextStrokeWidth: "thin",
-                margin: "106px",
+                margin: "50px",
                 fontSize: "26px",
                 textAlign: "center",
               }}

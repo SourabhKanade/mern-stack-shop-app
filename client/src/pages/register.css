@@ -1,6 +1,6 @@
 .form-control {
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  /* margin-bottom: 1rem; */
+  margin-top: 0.5rem;
 }
 
 .form-control input,
@@ -106,13 +106,13 @@ button:disabled:active {
   font-size: 50px;
 }
 
-.control.invalid input {
+/* .control.invalid input {
   border-color: red;
   background: #fbdada;
-}
+} */
 
 .registerForm {
-  margin-top: 80px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 }

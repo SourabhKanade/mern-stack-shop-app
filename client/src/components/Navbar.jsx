@@ -69,7 +69,7 @@ const Navbar = () => {
     localStorage.clear();
     // e.preventDefault();
     dispatch(Logout());
-    console.log("Logout triggered");
+    // console.log("Logout triggered");
   };
 
   return (
@@ -87,7 +87,7 @@ const Navbar = () => {
             {/* {localStorage.getItem("persist:root" || null) ? ( */}
             {currentUser ? (
               <Link to="/">
-                <Button className="btn" onClick={handleLogout}>LOGOUT</Button>
+                <Button className="logout_btn" onClick={handleLogout}>LOGOUT</Button>
               </Link>
             ) : (
               <>
