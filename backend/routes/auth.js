@@ -1,12 +1,39 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
+const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 
 //REGISTER
-router.post("/register", async (req, res) => {
- 
 
+//GET USER
+router.get("/register", async (req, res) => {
+res.render('register');
+
+  // try {
+  //   const user = await User.findById(req.params.id);
+  //   const { password, ...others } = user._doc;
+  //   res.status(200).json(others);
+  // } catch (err) {
+  //   res.status(500).json(err);
+  // }
+});
+
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  secure: false,
+  auth:{
+      user: 'kanadesourabh420@gmail.com',
+      pass: '654321@SK'
+  },
+  tls:{
+    rejectUnauthorized: false
+  }
+})
+
+
+router.post("/register", async (req, res) => {
   const newUser = new User({
    
     username: req.body.username,
@@ -15,16 +42,38 @@ router.post("/register", async (req, res) => {
       req.body.password,
       process.env.PASS_SEC
     ).toString(),
+    emailToken: crypto.randomBytes(64).toString('hex'),
+    isVerified: false,
   });
-  console.log(req.body.username)
-   console.log(req.body.email)
-  console.log(req.body.password)  
+  // console.log(req.body.username)
+  //  console.log(req.body.email)
+  // console.log(req.body.password)
 
   try {
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
-  } catch (err) {
+
+    let mailOptions = {
+      from: '"verify your email" <kanadesourabh420@gmail.com>',
+      to: newUser.email,
+      subject: 'demo - pls verify youe email',
+      html: `<h2>${newUser.username} thanks</h2>
+      <h4>pls verify your mail to continue ...</h4>
+      <a href=http://${req.headers.host}/verify-email?token=${newUser.emailToken}> veify your Email</a>`
+    }
+
+    transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+        console.log(error)
+      }
+      else{
+        console.log("verifivction email is send to your gmail account")
+      }
+    }) 
+}
+  catch (err) {
     res.status(500).json(err);
+    console.log(err);
   }
 });
 

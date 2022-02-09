@@ -10,7 +10,8 @@ import "./register.css";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: #1c192d6e;
+  ${'' /* background-color: #1c192d6e; */}
+  background-color: #92a7b6;
   background-size: cover;
   display: flex;
   align-items: center;

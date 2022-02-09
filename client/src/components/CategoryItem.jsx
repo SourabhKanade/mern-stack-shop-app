@@ -34,14 +34,14 @@ const Title = styled.h1`
     margin-bottom: 20px;
 `;
 
-const Button = styled.button`
-    border:none;
-    padding: 10px;
-    background-color: white;
-    color:gray;
-    cursor: pointer;
-    font-weight: 600;
-`;
+// const Button = styled.button`
+//     border:none;
+//     padding: 10px;
+//     background-color: white;
+//     color:gray;
+//     cursor: pointer;
+//     font-weight: 600;
+// `;
 
 const CategoryItem = ({ item }) => {
   return (
@@ -50,7 +50,7 @@ const CategoryItem = ({ item }) => {
       <Image src={item.img} />
       <Info>
         <Title>{item.title}</Title>
-        <Button>SHOP NOW</Button>
+        {/* <Button >SHOP NOW</Button> */}
       </Info>
       </Link>
     </Container>

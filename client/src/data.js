@@ -1,14 +1,16 @@
 export const sliderItems = [
     {
       id: 1,
-      img: "https://i.ibb.co/tzvRM3d/poster-511.jpg",
+      img:"https://i.ibb.co/ZgWkxvN/nike-poster.jpg",
+      // img: "https://i.ibb.co/8rVMk6b/woodland-poster.jpg",
       title: "LUXURY WEAR",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-      bg: "fcf1ed",
+      bg: "fbf0f4",
     },
     {
       id: 2,
-      img: "https://i.ibb.co/tMxj2gT/pexels-any.jpg",
+      img:"https://i.ibb.co/Jymb1bM/puma-dark-poster.jpg",
+      // img: "https://i.ibb.co/8rVMk6b/woodland-poster.jpg",
       title: "LOUNGEWEAR COLLECTION",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "fbf0f4",

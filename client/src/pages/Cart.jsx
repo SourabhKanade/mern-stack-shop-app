@@ -33,10 +33,10 @@ const TopButton = styled.button`
   padding: 10px;
   font-weight: 600;
   cursor: pointer;
-  border: ${(props) => props.type === "filled" && "none"};
+  ${'' /* border: ${(props) => props.type === "filled" && "none"};
   background-color: ${(props) =>
     props.type === "filled" ? "black" : "transparent"};
-  color: ${(props) => props.type === "filled" && "white"};
+  color: ${(props) => props.type === "filled" && "white"}; */}
 `;
 
 const TopTexts = styled.div`
@@ -287,13 +287,13 @@ const __DEV__ = document.domain === 'localhost'
         <Title>YOUR BAG</Title>
         <Top>
         <Link to="/">
-          <TopButton>Go Back</TopButton>
+          <button>Go Back</button>
           </Link>
           <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <TopButton type="filled" disabled={true}>CHECKOUT NOW</TopButton>
         </Top>
         <Bottom>
           <Info>

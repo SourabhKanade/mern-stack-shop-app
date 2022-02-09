@@ -2,7 +2,7 @@ import { Badge } from "@material-ui/core";
 import { ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import "./Navbar_btn.css";
-import brand from "../images/logo.jpg";
+// import brand from "../images/logo.jpg";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
@@ -17,6 +17,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   padding: 10px 20px;
+  background-color: #cbdce8;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,6 +32,9 @@ const Left = styled.div`
 
 const Logo = styled.h1`
   font-weight: bold;
+  font-size: 1.5em;
+    font-family: serif;
+    color: #21212a;
   ${mobile({ fontSize: "24px" })}
 `;
 const Right = styled.div`
@@ -78,9 +82,12 @@ const Navbar = () => {
         <Wrapper>
           <Left>
             <Logo>
-              <a href="/" rel="noopener noreferrer">
+            <Link to="/">
+            SafeShop
+              {/* <a href="/" rel="noopener noreferrer">
                 <img src={brand} alt="logo" style={{ fontSize: '37rem', height: '2.5rem', display: 'flex' }}/>
-              </a>
+              </a> */}         
+            </Link>
             </Logo>
           </Left>
           <Right>

@@ -9,7 +9,8 @@ import "../components/Navbar_btn.css";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
- background-color: #1c192d6e;
+  background-color: #92a7b6;
+ ${'' /* background-color: #1c192d6e; */}
  ${'' /*   background: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
@@ -150,7 +151,7 @@ const Login = () => {
           >
             LOGIN
           </button>
-          {error && <Error>Something went wrong...</Error>}
+          {error && <Error>Invalid Credentials!</Error>}
           <Agreement>
             <Link to="/register">
               <Span>DONT REMEMBER PASSWORD? then CREATE A NEW ACCOUNT</Span>

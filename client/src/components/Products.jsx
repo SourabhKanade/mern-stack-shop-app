@@ -70,7 +70,7 @@ const Products = ({ cat, filters, sort }) => {
   ) : (
     <div
       style={{
-        fontSize: "5rem",
+        fontSize: "3rem",
         color: "teal",
         textAlign: "center",
         marginBottom: "2rem",

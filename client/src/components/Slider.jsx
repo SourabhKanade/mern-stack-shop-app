@@ -49,15 +49,25 @@ const Slide = styled.div`
 
 const ImgContainer = styled.div`
   height: 100%;
+  ${'' /* display: none; */}
+  background-color: #f8f8fa;
+  text-align: center;
   flex: 1;
 `;
 
 const Image = styled.img`
   height: 87%;
+    /* font-size: large; */
+    margin: auto;
+    /* text-align: center; */
+    /* justify-content: center; */
+    margin-top: center;
+    width: 100%;
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
+  display: none;
   padding: 50px;
 `;
 
@@ -72,12 +82,12 @@ const Desc = styled.p`
   letter-spacing: 3px;
 `;
 
-const Button = styled.button`
-  padding: 10px;
-  font-size: 20px;
-  background-color: transparent;
-  cursor: pointer;
-`;
+// const Button = styled.button`
+//   padding: 10px;
+//   font-size: 20px;
+//   background-color: transparent;
+//   cursor: pointer;
+// `;
 
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -103,7 +113,7 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Button>SHOW NOW</Button>
+              {/* <Button disabled={true}>SHOW NOW</Button> */}
             </InfoContainer>
           </Slide>
         ))}
