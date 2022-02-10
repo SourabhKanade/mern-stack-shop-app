@@ -223,7 +223,7 @@ const __DEV__ = document.domain === 'localhost'
 			currency: data.currency,
 			amount: data.amount,
 			order_id: data.id,
-			name: 'Donation',
+			name: 'Donation to SafeShop',
 			description: 'Thank you for nothing.',
 
 			handler: function (response) {
@@ -349,9 +349,6 @@ const __DEV__ = document.domain === 'localhost'
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>₹ {cart.total}</SummaryItemPrice>
             </SummaryItem>
-              {/* description={`Your total is ₹${cart.total}`}
-              amount={cart.total * 100} */}
-           {/*   stripeKey={KEY} */}
             <Button onClick={displayRazorpay}>CHECKOUT NOW</Button>
           </Summary>
         </Bottom>

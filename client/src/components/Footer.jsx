@@ -88,7 +88,7 @@ const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>Ninja</Logo>
+        <Logo>SafeShop</Logo>
         <Desc>
           The majority have suffered alteration in some form, by injected
           humour, or randomised words which don’t look even slightly believable.
@@ -132,7 +132,7 @@ const Footer = () => {
           <Phone style={{marginRight:"10px"}}/> +91-1234567891
         </ContactItem>
         <ContactItem>
-          <MailOutline style={{marginRight:"10px"}} /> contact@ninja.dev
+          <MailOutline style={{marginRight:"10px"}} /> contact@SafeShop.dev
         </ContactItem>
         <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>
