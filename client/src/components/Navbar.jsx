@@ -8,6 +8,7 @@ import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Logout } from "../redux/userRedux";
+import { clearCart } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 
 const Container = styled.div`
@@ -33,8 +34,8 @@ const Left = styled.div`
 const Logo = styled.h1`
   font-weight: bold;
   font-size: 1.5em;
-    font-family: serif;
-    color: #21212a;
+  font-family: serif;
+  color: #21212a;
   ${mobile({ fontSize: "24px" })}
 `;
 const Right = styled.div`
@@ -72,6 +73,7 @@ const Navbar = () => {
     // localStorage.removeItem("persist:root");
     localStorage.clear();
     // e.preventDefault();
+    dispatch(clearCart());
     dispatch(Logout());
     // console.log("Logout triggered");
   };
@@ -82,19 +84,21 @@ const Navbar = () => {
         <Wrapper>
           <Left>
             <Logo>
-            <Link to="/">
-            SafeShop
-              {/* <a href="/" rel="noopener noreferrer">
+              <Link to="/">
+                SafeShop
+                {/* <a href="/" rel="noopener noreferrer">
                 <img src={brand} alt="logo" style={{ fontSize: '37rem', height: '2.5rem', display: 'flex' }}/>
-              </a> */}         
-            </Link>
+              </a> */}
+              </Link>
             </Logo>
           </Left>
           <Right>
             {/* {localStorage.getItem("persist:root" || null) ? ( */}
             {currentUser ? (
               <Link to="/">
-                <Button className="logout_btn" onClick={handleLogout}>LOGOUT</Button>
+                <Button className="logout_btn" onClick={handleLogout}>
+                  LOGOUT
+                </Button>
               </Link>
             ) : (
               <>
@@ -102,7 +106,7 @@ const Navbar = () => {
                   <button className="btn"> REGISTER </button>
                 </Link>
                 <Link to="/login">
-                  <button className="btn" >SIGN IN</button>
+                  <button className="btn">SIGN IN</button>
                 </Link>
               </>
             )}

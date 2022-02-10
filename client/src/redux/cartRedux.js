@@ -8,6 +8,11 @@ const cartSlice = createSlice({
     total: 0,
   },
   reducers: {
+    clearCart: (state, action) => {
+      state.quantity = 0;
+      state.products = [];
+      state.total = 0;
+    },
     addProduct: (state, action) => {
       let foundProductIndex = state.products.findIndex(
         (item) => item._id === action.payload._id
@@ -32,7 +37,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addProduct, deleteProduct } = cartSlice.actions;
+export const { addProduct, deleteProduct, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
 
 // import { createSlice } from "@reduxjs/toolkit"
