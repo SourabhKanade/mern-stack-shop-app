@@ -63,8 +63,4 @@ export const sliderItems = [
   //     id:6,
   //     img:"https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
   //   },
-  //   {
-  //     id:7,
-  //     img:"https://www.vintageindustries.nl/download_front/qympzk1762/2217_Arrow_Jacket_Forest.png",
-  //   },
   // ]
