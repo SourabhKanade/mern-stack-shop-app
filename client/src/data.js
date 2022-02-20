@@ -59,8 +59,4 @@ export const sliderItems = [
   //     id:5,
   //     img:"https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
   //   },
-  //   {
-  //     id:6,
-  //     img:"https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
-  //   },
   // ]
