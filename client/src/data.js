@@ -47,8 +47,4 @@ export const sliderItems = [
   //     id:2,
   //     img:"https://cdn.shopify.com/s/files/1/0101/4832/products/Angela_Natural_Tee.png?v=1606780388",
   //   },
-  //   {
-  //     id:3,
-  //     img:"https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
-  //   },
   // ]
